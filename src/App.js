@@ -1,9 +1,20 @@
+import { useState, useEffect } from "react";
 import "./App.css";
+import Question from "./components/question/Question";
+import Meter from "./components/meter/Meter";
+import { useData } from "./Context";
+import EndScreen from "./components/endscreen/EndScreen";
 
 function App() {
+  const { loading, score, scores } = useData();
+
+  useEffect(() => {}, [loading, score]);
+
   return (
     <div className="App">
-      <h1>Hoi</h1>
+      <Meter top={scores[score]} />
+      {!loading ? <Question /> : null}
+      <EndScreen />
     </div>
   );
 }
